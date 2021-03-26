@@ -45,7 +45,7 @@
                 <label for="searchClient">Buscar...</label>
             </div>
             <div class="col s12 m7 l7">
-                <a href="#newClient" class="btn right grey lighten-2 black-text modal-trigger"><i class="material-icons" style="color: #000 !important;">add</i></a>
+                <a href="#newClient" class="btn right blue-grey lighten-5 modal-trigger"><i class="material-icons" style="color: #000 !important;">add</i></a>
             </div>
             <div class="col s12 m12 l12">
                 <table class="responsive-table highlight client-table">
@@ -320,7 +320,7 @@
                     <td>${row[i].businessname}</td> 
                     <td>${row[i].phone}</td> 
                     <td>${row[i].email}</td> 
-                    <td> <a href="#newEquipment" class="btn modal-trigger grey lighten-2 newEquipments"><i class="material-icons" style="color: #000 !important;">add</i></a></td> 
+                    <td> <a href="#newEquipment" class="btn modal-trigger blue-grey lighten-5 newEquipments"><i class="material-icons" style="color: #000 !important;">add</i></a></td> 
                     <td><a href="#equipmentClient-modal" class="btn equipmentsClient orange lighten-2 modal-trigger"><i class="material-icons" style="color: #000 !important;">assignment</i></a></td>  
                     <td><a href="#" class="btn registerClient blue lighten-2"><i class="material-icons" style="color: #000 !important;">library_books</i></a></td>  
                     </tr>`
