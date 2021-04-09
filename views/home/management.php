@@ -927,6 +927,7 @@
                 url: "http://localhost/backupmonitor-api/public/methods/customers/save",
                 data: {
                     "email": email,
+                    // maximo 15 caracteres
                     "businessname": businessname,
                     "name": name,
                     "surname": surname,
