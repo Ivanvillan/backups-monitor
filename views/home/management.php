@@ -274,6 +274,9 @@
                     <a class="col s1 m1 l1 right modal-close margin-a"><i class="material-icons" style="color: #000 !important;">close</i></a>
                     <div class="col s12 m12 l12 divider" style="margin-bottom: 20px !important;"></div>
                     <div class="col s12 m12 l12">
+                    <div class="col s12 m12 l12">
+                        <a href="#" id="exe" class="btn right grey lighten-5 tooltipped" data-position="left" data-tooltip="Aplicativo"><i class="material-icons" style="color: #000;">apps</i></a>
+                    </div>
                         <table class="highlight responsive-table table-taskList">
                             <thead>
                                 <tr>
@@ -283,7 +286,7 @@
                                     <th>INTERVALO</th>
                                     <th>INFORMACION ADICIONAL</th>
                                     <th>EDITAR</th>
-                                    <th>ARCHIVOS</th>
+                                    <th>EJECUTABLES</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -566,12 +569,12 @@
                     });
                     $('.modalEditClient').click(function (e) { 
                         e.preventDefault();
-                        var email = $(this).parent().parent().find('td').eq(3).html();
+                        var name = $(this).parent().parent().find('td').eq(0).html();
                         var element = $(this)[0].parentElement.parentElement;
                         paramClient = $(element).attr('clientID');
                         $.ajax({
                             type: "GET",
-                            url: "http://localhost/backupmonitor-api/public/methods/customers/" + email,
+                            url: "http://localhost/backupmonitor-api/public/methods/customers/" + name,
                             dataType: "json",
                             success: function (response) {
                                 var data = response.result;
@@ -698,7 +701,7 @@
                         let row = response.result;
                         let html = [];
                         for (let i=0; i < row.length; i++){
-                        var interval = row[i].interval_hour;
+                        var interval = row[i].interval_time;
                         if(interval != null){
                             var intervalNum = interval.split('.')[0] + 'HS.';
                         }else{
@@ -712,9 +715,9 @@
                         }
                         var time = row[i].tiempo;
                         if(time != null){
-                            var timeNum = time + 's.';
+                            var timeNum = time + 'HS.';
                         }else{
-                            var timeNum = '0' + 's.';
+                            var timeNum = '0' + 'HS.';
                         }
                         var log = row[i].text_log;
                         if(log == ''){
@@ -759,7 +762,7 @@
                     let row = response.result;
                         let html = [];
                         for (let i=0; i < row.length; i++){
-                        var interval = row[i].interval_hour;
+                        var interval = row[i].interval_time;
                         if(interval != null){
                             var intervalNum = interval.split('.')[0] + 'HS.';
                         }else{
@@ -854,6 +857,7 @@
                         );
                     }
                     $('.table-taskList>tbody').html(html.join(''));
+                    $('.tooltipped').tooltip();
                     $('.downloadConfig').click(function (e) { 
                         e.preventDefault();
                         var elementTask = $(this)[0].parentElement.parentElement;
@@ -862,22 +866,14 @@
                         var initPre = 'backupmonitor.exe /trigger=1 /equipment=';
                         var initPost = 'backupmonitor.exe /trigger=2 /equipment=';
                         var task = ' /task='
-                        var ini = '/assets/docs/config.ini';
                         var taskName1 = 'pre' +  nameTask + '.bat';
                         var taskName2 = 'pos' + nameTask + '.bat';
-                        JSZipUtils.getBinaryContent('/backups-monitor/assets/docs/BackupMonitor.zip', function(err, data) {
-                        if(err) {
-                            throw err; // or handle err
-                        }
-                        var zip = new JSZip(data);
+                        var nameFile = 'Config' + ' ' + nameTask;
+                        var zip = new JSZip();
                         zip.file(taskName1, initPre + paramEquipment + task + paramTask);
                         zip.file(taskName2, initPost + paramEquipment + task + paramTask);
-                        var ini =  `[log_path]\nC:\\Program Files (x86)\\Cobian Backup 11\\Logs\n[server_address]\nlocalhost\\SQLEXPRESS`
-                        zip.file("config.ini", ini);
-                        var nameFile = 'Config' + ' ' + nameTask;
                         var content = zip.generate({type:"blob"});
                         saveAs(content, nameFile);
-                        });
                     });
                     $('.show-editTask').click(function (e) { 
                         e.preventDefault();
@@ -1128,6 +1124,22 @@
                     $('.editTask').removeClass('hide');
                     $('.preloader-editTask').addClass('hide');
                 }
+            });
+        });
+        // 
+        // APP
+        $('#exe').click(function (e) { 
+            e.preventDefault();
+            var ini = '/assets/docs/config.ini';
+            JSZipUtils.getBinaryContent('/backups-monitor/assets/docs/BackupMonitor.zip', function(err, data) {
+            if(err) {
+                throw err; // or handle err
+            }
+            var zip = new JSZip(data);
+            var ini =  `[log_path]\nC:\\Program Files (x86)\\Cobian Backup 11\\Logs\n[server_address]\nlocalhost\\SQLEXPRESS`
+            zip.file("config.ini", ini);
+            var content = zip.generate({type:"blob"});
+            saveAs(content, 'aplicativo-config');
             });
         });
         // 
