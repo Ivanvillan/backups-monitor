@@ -34,47 +34,8 @@
                     let row = response.result;
                         let html = [];
                         for (let i=0; i < row.length; i++){
-                        if (row[i].detail != null) {
-                            var detail = row[i].detail.split(' ');
-                            var detailOK = detail[0].split('=')[1];
-                            var detailNoData = detail[1].split('=')[1];
-                            var detailError = detail[2].split('=')[1];
-                            if (detail[0] == '' && detail[1] != '' && detail[2] != '') {
-                                detailOK = '';
-                                detailNoData = `<i class="material-icons tiny" style="color: #212121 !important; margin-top: 5px !important; font-size: 10px;">fiber_manual_record</i>` + detailNoData + ' - Vacías ';
-                                detailError = `<i class="material-icons tiny" style="color: #b71c1c !important; margin-top: 5px !important; font-size: 10px;">fiber_manual_record</i>` + detailError + ' - Error';
-                            };
-                            if (detail[0] != '' && detail[1] == '' && detail[2] != '') {
-                                detailOK = `<i class="material-icons tiny" style="color: #2e7d32 !important; margin-top: 5px !important; font-size: 10px;">fiber_manual_record</i>` + detailOK + ' - OK ';
-                                detailNoData = '';
-                                detailError = `<i class="material-icons tiny" style="color: #b71c1c !important; margin-top: 5px !important; font-size: 10px;">fiber_manual_record</i>` + detailError + ' - Error';
-                            };
-                            if (detail[0] != '' && detail[1] != '' && detail[2] == '') {
-                                detailOK = `<i class="material-icons tiny" style="color: #2e7d32 !important; margin-top: 5px !important; font-size: 10px;">fiber_manual_record</i> ` + detailOK + ' - OK ';
-                                detailNoData = `<i class="material-icons tiny" style="color: #212121 !important; margin-top: 5px !important; font-size: 10px;">fiber_manual_record</i> ` + detailNoData + ' - Vacías';
-                                detailError = '';
-                            };
-                            if (detail[0] != '' && detail[1] != '' && detail[2] != '') {
-                                detailOK = `<i class="material-icons tiny" style="color: #2e7d32 !important; margin-top: 5px !important; font-size: 10px;">fiber_manual_record</i> ` + detailOK + ' - OK ';
-                                detailNoData = `<i class="material-icons tiny" style="color: #212121 !important; margin-top: 5px !important; font-size: 10px;">fiber_manual_record</i> ` + detailNoData + ' - Vacías ';
-                                detailError = `<i class="material-icons tiny" style="color: #b71c1c !important; margin-top: 5px !important; font-size: 10px;">fiber_manual_record</i>` + detailError + ' - Error';
-                            };
-                            if (detail[0] == '' && detail[1] == '' && detail[2] == '') {
-                                detailOK = '';
-                                detailNoData = '';
-                                detailError = '';
-                            };
-                        }else{
-                            var detail = 'Sin detalle';
-                            var detailOK = `<i class="material-icons tiny" style="color: #2e7d32 !important; margin-top: 5px !important; font-size: 10px;">fiber_manual_record</i>` + ' 0 ';
-                            var detailNoData = `<i class="material-icons tiny" style="color: #212121 !important; margin-top: 5px !important; font-size: 10px;">fiber_manual_record</i>` + ' 0 ';
-                            var detailError = `<i class="material-icons tiny" style="color: #b71c1c !important; margin-top: 5px !important; font-size: 10px;">fiber_manual_record</i>` + ' 0';
-                        }
-                        // console.log(detailOK);
-                        // console.log(detailNoData);
-                        // console.log(detailError);
                         html.push(
-                            `<div class="item card horizontal hoverable"><div class="card-content internal-item">${row[i].businessname} | Tareas: ${row[i].tasks_count} | ${detailOK} ${detailNoData} ${detailError}</div></div>`
+                            `<div class="item card horizontal hoverable"><div class="card-content internal-item">${row[i].businessname} | Tareas: ${row[i].tasks_count} | ${row[i].detail}</div></div>`
                         );
                     }
                     $('.rejilla').html(html.join(''));
