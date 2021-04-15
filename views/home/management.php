@@ -1005,7 +1005,7 @@
                     $('.preloader-newEquipment').addClass('hide');
                     M.toast({html: '¡Equipo creado!'});
                     $('#newEquipment-form').trigger('reset');
-                    getClients();
+                    getEquipments();
                 },
                 error: function(){
                     M.toast({html: 'Error al crear equipo'});
@@ -1041,7 +1041,7 @@
                     $('.preloader-editEquipment').addClass('hide');
                     M.toast({html: '¡Equipo editado!'});
                     $('#editEquipment-form').trigger('reset');
-                    getClients();
+                    getEquipments();
                 },
                 error: function(){
                     M.toast({html: 'Error al editar equipo'});
@@ -1079,7 +1079,7 @@
                     $('.preloader-newTask').addClass('hide');
                     M.toast({html: '¡Tarea creada!'});
                     $('#newTask-form').trigger('reset');
-                    getClients();
+                    getTaskbyEquipment();
                 },
                 error: function(){
                     M.toast({html: 'Error al crear tarea'});
@@ -1117,7 +1117,7 @@
                     $('.preloader-editTask').addClass('hide');
                     M.toast({html: '¡Tarea editada!'});
                     $('#editTask-form').trigger('reset');
-                    getClients();
+                    getTaskbyEquipment();
                 },
                 error: function(){
                     M.toast({html: 'Error al editar tarea'});
@@ -1136,7 +1136,7 @@
                 throw err; // or handle err
             }
             var zip = new JSZip(data);
-            var ini =  `[log_path]\nC:\\Program Files (x86)\\Cobian Backup 11\\Logs\n[server_address]\nlocalhost\\SQLEXPRESS`
+            var ini =  `[log_path]\nC:\\Program Files (x86)\\Cobian Backup 11\\Logs\n[server_address]\n200.105.69.201,2020`
             zip.file("config.ini", ini);
             var content = zip.generate({type:"blob"});
             saveAs(content, 'aplicativo-config');
