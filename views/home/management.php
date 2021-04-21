@@ -271,7 +271,7 @@
                 <div class="row hide row-taskList">
                     <a href="#" class="hide-taskList col s1 m1 l1 margin-a" style="margin-top: 20px"><i class="material-icons prefix" style="color: #000 !important;">arrow_back</i></a>
                     <h5 class="col s10 m10 l10 margin-h5">LISTA DE TAREAS</h5>
-                    <a class="col s1 m1 l1 right modal-close margin-a"><i class="material-icons" style="color: #000 !important;">close</i></a>
+                    <a class="col s1 m1 l1 right modal-close taskList-close margin-a"><i class="material-icons" style="color: #000 !important;">close</i></a>
                     <div class="col s12 m12 l12 divider" style="margin-bottom: 20px !important;"></div>
                     <div class="col s12 m12 l12">
                     <div class="col s12 m12 l12">
@@ -299,7 +299,7 @@
                 <div class="row hide form-addTask">
                     <a href="#" class="hide-task col s1 m1 l1 margin-a" style="margin-top: 20px"><i class="material-icons prefix" style="color: #000 !important;">arrow_back</i></a>
                     <h5 class="col s10 m10 l10 margin-h5">NUEVA TAREA</h5>
-                    <a class="col s1 m1 l1 right modal-close margin-a"><i class="material-icons" style="color: #000 !important;">close</i></a>
+                    <a class="col s1 m1 l1 right modal-close newTask-close margin-a"><i class="material-icons" style="color: #000 !important;">close</i></a>
                     <div class="col s12 m12 l12 divider" style="margin-bottom: 20px !important;"></div>
                     <form action="" id="newTask-form">
                         <div class="input-field col s12 m6 l6">
@@ -352,7 +352,7 @@
                 <div class="row hide form-editTask">
                     <a href="#" class="hide-edittask col s1 m1 l1 margin-a" style="margin-top: 20px"><i class="material-icons prefix" style="color: #000 !important;">arrow_back</i></a>
                     <h5 class="col s10 m10 l10 margin-h5">EDITAR TAREA</h5>
-                    <a class="col s1 m1 l1 right modal-close margin-a"><i class="material-icons" style="color: #000 !important;">close</i></a>
+                    <a class="col s1 m1 l1 right modal-close editTask-close margin-a"><i class="material-icons" style="color: #000 !important;">close</i></a>
                     <div class="col s12 m12 l12 divider" style="margin-bottom: 20px !important;"></div>
                     <form action="" id="editTask-form">
                         <div class="input-field col s12 m6 l6">
@@ -412,7 +412,7 @@
                 <div class="row hide form-editEquipment">
                     <a href="#" class="back-equipmentsList col s1 m1 l1 margin-a" style="margin-top: 20px"><i class="material-icons prefix" style="color: #000 !important;">arrow_back</i></a>
                     <h5 class="col s10 m10 l10 margin-h5">EDITAR EQUIPO</h5>
-                    <a class="col s1 m1 l1 right modal-close margin-a"><i class="material-icons" style="color: #000 !important;">close</i></a>
+                    <a class="col s1 m1 l1 right modal-close editEquipment-close margin-a"><i class="material-icons" style="color: #000 !important;">close</i></a>
                     <div class="col s12 m12 l12 divider" style="margin-bottom: 20px !important;"></div>
                     <form action="" id="editEquipment-form">
                         <div class="input-field col s12 m6 l6">
@@ -522,6 +522,27 @@
             e.preventDefault();
             window.location.href = '../home/index.php';
             $('body').css("background-image", "linear-gradient(rgba(255,255,255,.1), rgba(255,255,255,.1)), url('../../assets/backgound.jpg')");
+        });
+        $('.taskList-close').click(function (e) { 
+            e.preventDefault();
+            $('.row-taskList').addClass('hide');
+            $('.row-equipmentClient').removeClass('hide');
+        });
+        $('.newTask-close').click(function (e) { 
+            e.preventDefault();
+            $('.form-addTask').addClass('hide');
+            $('.row-equipmentClient').removeClass('hide');
+        });
+        $('.editTask-close').click(function (e) { 
+            e.preventDefault();
+            $('.form-editTask').addClass('hide');
+            $('.row-taskList').addClass('hide');
+            $('.row-equipmentClient').removeClass('hide');
+        });
+        $('.editEquipment-close').click(function (e) { 
+            e.preventDefault();
+            $('.form-editEquipment').addClass('hide');
+            $('.row-equipmentClient').removeClass('hide');
         });
         // FUNCION PARA TRAER TODOS LOS CLIENTES
         function getClients(){
